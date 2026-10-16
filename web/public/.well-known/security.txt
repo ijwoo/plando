@@ -1,0 +1,9 @@
+# Plan Do! 보안 취약점 제보
+#
+# 취약점을 발견하셨다면 공개하기 전에 아래 주소로 알려주세요.
+# 확인 후 회신드리고, 수정되면 알려드립니다.
+
+Contact: mailto:wawa9972@gmail.com
+Preferred-Languages: ko, en
+Canonical: https://plando.imjaewoo.dev/.well-known/security.txt
+Expires: 2027-08-02T00:00:00.000Z

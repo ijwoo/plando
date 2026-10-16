@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2732" height="2732" viewBox="0 0 2732 2732">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="100%" stop-color="#1D4ED8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="2732" height="2732" fill="url(#bg)"/>
+
+  <!-- Check mark (smaller + thinner) -->
+  <path d="M 1198 1280 L 1321 1396 L 1534 1164"
+        stroke="white"
+        stroke-width="90"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        fill="none"/>
+
+  <!-- "Plan Do!" — Plan white + Do! saturated light blue -->
+  <text x="1366" y="1620"
+        text-anchor="middle"
+        font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif"
+        font-size="150"
+        font-weight="700"
+        letter-spacing="-3"
+        fill="#FFFFFF">Plan <tspan fill="#60A5FA">Do!</tspan></text>
+</svg>

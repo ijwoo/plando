@@ -1,0 +1,11 @@
+# Plan Do!
+#
+# 앱 화면(/#/...)은 로그인해야 의미가 있고 해시 라우팅이라 크롤러가 색인해도 얻을 게 없다.
+# 반대로 사용 안내서(/docs/)는 공개 문서라 검색으로 찾아오는 게 도움이 된다.
+
+User-agent: *
+Allow: /$
+Allow: /docs/
+Disallow: /api/
+
+Sitemap: https://plando.imjaewoo.dev/sitemap.xml

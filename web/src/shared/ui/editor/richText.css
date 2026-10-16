@@ -1,0 +1,125 @@
+/* 공용 마크다운 에디터 (RichTextEditor) 스타일 — plando 토큰 기반 테마 대응 */
+
+.plando-rte {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ── 툴바 ── */
+.plando-rte-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 10px;
+  background: var(--plando-surface-low);
+}
+
+.plando-rte-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: none;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--plando-text-secondary);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.plando-rte-btn:hover {
+  background: var(--plando-surface-mid);
+  color: var(--plando-text-primary);
+}
+.plando-rte-btn.is-active {
+  background: var(--plando-primary-soft);
+  color: var(--plando-primary);
+}
+
+/* ── 에디터 본문 ── */
+.plando-rte-editor .plando-rte-content {
+  min-height: var(--plando-rte-min-h, 96px);
+  outline: none;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--plando-text-primary);
+  word-break: break-word;
+}
+
+/* placeholder — TipTap Placeholder 확장이 빈 첫 노드에 .is-editor-empty + data-placeholder 부여 */
+.plando-rte-content .is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--plando-text-tertiary);
+  pointer-events: none;
+  height: 0;
+  float: left;
+}
+
+.plando-rte-content p { margin: 0 0 8px; }
+.plando-rte-content p:last-child { margin-bottom: 0; }
+
+.plando-rte-content h2 {
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 14px 0 6px;
+}
+.plando-rte-content h3 {
+  font-size: 15.5px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 12px 0 5px;
+}
+.plando-rte-content h2:first-child,
+.plando-rte-content h3:first-child { margin-top: 0; }
+
+.plando-rte-content ul,
+.plando-rte-content ol { margin: 0 0 8px; padding-left: 22px; }
+.plando-rte-content li { margin: 2px 0; }
+.plando-rte-content li > p { margin: 0; }
+
+.plando-rte-content blockquote {
+  margin: 8px 0;
+  padding: 2px 12px;
+  border-left: 3px solid var(--plando-border);
+  color: var(--plando-text-secondary);
+}
+
+.plando-rte-content code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  padding: 1px 5px;
+  border-radius: 5px;
+  background: var(--plando-surface-mid);
+  color: var(--plando-text-primary);
+}
+.plando-rte-content pre {
+  margin: 8px 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--plando-surface-mid);
+  overflow-x: auto;
+}
+.plando-rte-content pre code { padding: 0; background: transparent; }
+
+.plando-rte-content a {
+  color: var(--plando-primary);
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.plando-rte-content strong { font-weight: 800; }
+
+.plando-rte-content hr {
+  margin: 14px 0;
+  border: none;
+  border-top: 1px solid var(--plando-border);
+}
+/* 슬래시 트리거 "/" 잔여 데코레이션 */
+.plando-rte-content .suggestion {
+  color: var(--plando-primary);
+}

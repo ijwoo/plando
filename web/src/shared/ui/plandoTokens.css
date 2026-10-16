@@ -1,0 +1,217 @@
+/* ─────────────────────────────────────────────────────────
+   plando design tokens — CSS custom properties
+   MUI theme.js 와 sx props 양쪽에서 참조 가능.
+   typography 유틸 클래스(.plando-h1 등)는 Phase 2에서 추가.
+   ───────────────────────────────────────────────────────── */
+
+:root {
+  /* ── Brand ─────────────────────────────────── */
+  --plando-primary:         #1976D2;
+  --plando-primary-hover:   #1565C0;
+  --plando-primary-pressed: #0D47A1;
+  --plando-primary-soft:    #E3F2FD;
+  --plando-primary-soft-2:  #BBDEFB;
+
+  /* ── Neutrals (light) ──────────────────────── */
+  /* palette(theme.js) 가 단일 출처 — main.jsx 가 활성 테마 값으로 덮어쓴다.
+     여기 값은 하이드레이션 전 기본값. light palette.background.default 와 일치시킴
+     (예전 #F0F2F5 는 실제 렌더되는 #F5F6F8 과 어긋나 있었음). */
+  --plando-bg:           #F5F6F8;
+  --plando-surface:      #FFFFFF;
+  --plando-surface-alt:  #F5F7FA;
+  --plando-divider:      #E4E8EF;
+  --plando-border:       #D4DAE5;
+
+  --plando-text-primary:   #0F172A;
+  --plando-text-secondary: #475569;
+  --plando-text-tertiary:  #94A3B8;
+  --plando-text-disabled:  #CBD5E1;
+
+  /* ── Status ─────────────────────────────────── */
+  --plando-red:         #E11D48;
+  --plando-red-soft:    #FFE4E6;
+  --plando-orange:      #F59E0B;
+  --plando-orange-soft: #FEF3C7;
+  --plando-green:       #10B981;
+  --plando-green-soft:  #D1FAE5;
+  --plando-gray:        #94A3B8;
+  --plando-gray-soft:   #E4EAF3;
+
+  /* ── Data viz ───────────────────────────────── */
+  --plando-chart-1: #0D47A1;
+  --plando-chart-2: #1565C0;
+  --plando-chart-3: #1976D2;
+  --plando-chart-4: #42A5F5;
+  --plando-chart-5: #90CAF9;
+  --plando-chart-6: #BBDEFB;
+
+  /* ── Radii ──────────────────────────────────── */
+  --plando-radius-sm:   8px;
+  --plando-radius-md:  12px;
+  --plando-radius-lg:  20px;
+  --plando-radius-xl:  28px;
+  --plando-radius-pill: 9999px;
+
+  /* ── Spacing ────────────────────────────────── */
+  --plando-space-1: 4px;
+  --plando-space-2: 8px;
+  --plando-space-3: 12px;
+  --plando-space-4: 16px;
+  --plando-space-5: 20px;
+  --plando-space-6: 24px;
+  --plando-space-8: 32px;
+  /* Phase 1+ 신규 (mock spec) */
+  --plando-space-10: 40px;
+  --plando-space-14: 56px;
+
+  /* ── Radii — Phase 1+ 신규 (mock spec) ────────
+     기존 radius-sm/md/lg/xl/pill는 유지. card/modal은 새 페이지에서 사용. */
+  --plando-radius-card:   16px;
+  --plando-radius-modal:  24px;
+
+  /* ── Elevation — semantic (기존, 유지) ──────── */
+  --plando-shadow-card:   0 1px 2px rgba(15,23,42,0.04), 0 2px 8px rgba(15,23,42,0.04);
+  --plando-shadow-raised: 0 4px 12px rgba(15,23,42,0.06), 0 12px 32px rgba(15,23,42,0.06);
+  --plando-shadow-float:  0 8px 24px rgba(25,118,210,0.24), 0 2px 6px rgba(25,118,210,0.18);
+  --plando-shadow-nav:    0 -1px 2px rgba(15,23,42,0.03), 0 -6px 24px rgba(15,23,42,0.06);
+
+  /* ── Elevation — numbered ─────────────────────── */
+  --plando-shadow-1: 0 1px 2px rgba(17,24,39,0.04), 0 1px 3px rgba(17,24,39,0.03);
+  --plando-shadow-2: 0 2px 6px rgba(17,24,39,0.05), 0 4px 10px rgba(17,24,39,0.04);
+  --plando-shadow-3: 0 4px 12px rgba(17,24,39,0.06), 0 8px 24px rgba(17,24,39,0.05);
+  --plando-shadow-4: 0 8px 24px rgba(17,24,39,0.08), 0 16px 40px rgba(17,24,39,0.06);
+
+  /* ── Toss-style elevation — border 없이 shadow로 떠있는 느낌 ── */
+  --plando-elev-1: none;
+  --plando-elev-2: 0 1px 2px rgba(0,0,0,0.02);
+  --plando-elev-3: 0 2px 4px rgba(0,0,0,0.03);
+
+  /* ── Motion ─────────────────────────────────── */
+  --plando-ease:     cubic-bezier(0.2, 0.8, 0.2, 1);
+  --plando-dur-fast: 140ms;
+  --plando-dur-base: 220ms;
+  --plando-dur-slow: 360ms;
+
+  /* ── Type scale — Phase 1+ 신규 (mock spec, Pretendard 기준) ──
+     MUI typography variant과 별개. sx 표현식이나 Phase 1+ 컴포넌트에서 직접 참조.
+     형식: --plando-type-{name}-{size|weight|lh|ls} */
+  --plando-type-display-size: 28px;  --plando-type-display-weight: 700;  --plando-type-display-lh: 1.30;  --plando-type-display-ls: -0.02em;
+  --plando-type-title1-size:  22px;  --plando-type-title1-weight:  700;  --plando-type-title1-lh:  1.36;  --plando-type-title1-ls:  -0.02em;
+  --plando-type-title2-size:  18px;  --plando-type-title2-weight:  700;  --plando-type-title2-lh:  1.40;  --plando-type-title2-ls:  -0.01em;
+  --plando-type-title3-size:  16px;  --plando-type-title3-weight:  600;  --plando-type-title3-lh:  1.45;  --plando-type-title3-ls:  -0.01em;
+  --plando-type-body-size:    15px;  --plando-type-body-weight:    500;  --plando-type-body-lh:    1.50;  --plando-type-body-ls:    -0.01em;
+  --plando-type-bodyR-size:   15px;  --plando-type-bodyR-weight:   400;  --plando-type-bodyR-lh:   1.55;  --plando-type-bodyR-ls:   -0.01em;
+  /* body2 = 14px. 스케일에 없던 단계인데 코드에는 252곳이 쓰고 있었다 — 현실을 반영해 정식 단계로 승격.
+     (MUI body2 기본값과 같은 크기라, theme.js에서 이 값으로 맞추면 variant 사용처가 자동 정렬된다) */
+  --plando-type-body2-size:   14px;  --plando-type-body2-weight:   500;  --plando-type-body2-lh:   1.50;  --plando-type-body2-ls:   -0.01em;
+  --plando-type-label-size:   13px;  --plando-type-label-weight:   600;  --plando-type-label-lh:   1.40;  --plando-type-label-ls:   0;
+  --plando-type-caption-size: 12px;  --plando-type-caption-weight: 500;  --plando-type-caption-lh: 1.45;  --plando-type-caption-ls: 0;
+  --plando-type-num-size:     28px;  --plando-type-num-weight:     800;  --plando-type-num-lh:     1.20;  --plando-type-num-ls:     -0.03em;
+  --plando-type-numLg-size:   36px;  --plando-type-numLg-weight:   800;  --plando-type-numLg-lh:   1.10;  --plando-type-numLg-ls:   -0.03em;
+
+  /* ── Typography ─────────────────────────────── */
+  --plando-font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont,
+                 system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo',
+                 'Noto Sans KR', sans-serif;
+
+  /* ── Form / Input — Phase 6+ 신규 (mock spec) ──
+     카드 내부 입력 필드와 sub-surface(카드 안 목록 행 등)의 배경/테두리.
+     기존 AddTodoMobile/TodoDetailMobile/AssigneePicker가 inline rgba로 따로 정의하던 색을 통일. */
+  --plando-input-bg:        rgba(0, 0, 0, 0.03);
+  --plando-input-bd:        rgba(0, 0, 0, 0.12);
+  --plando-input-bg-hover:  rgba(0, 0, 0, 0.05);
+  --plando-sub-surface:     #F4F6F8; /* mock: 카드 안 목록 행 배경 */
+  --plando-sheet-handle:    rgba(0, 0, 0, 0.15);
+  --plando-overlay-bg:      rgba(20, 30, 60, 0.32); /* mock: sheet backdrop (light) */
+
+  /* ── Surface tone scale — Phase I 마이그용 ────────────
+     54파일에 흩어진 `isDark ? "rgba(255,255,255,0.0X)" : "rgba(0,0,0,0.0Y)"`
+     인라인 패턴 중 가장 빈번한 4단계를 정확 매칭하는 토큰.
+     기존 인라인 값과 1:1 매칭이라 마이그 시 CSS 변화 0. */
+  --plando-surface-card:    #FFFFFF;                /* 설정·더보기 등 흰 카드 표면 */
+  --plando-surface-faint:   rgba(0, 0, 0, 0.025);   /* 4× 패턴: 0.025/0.04 */
+  --plando-surface-low:     rgba(0, 0, 0, 0.04);    /* 6× 패턴: 0.04/0.05 — 가장 빈번 */
+  --plando-surface-mid:     rgba(0, 0, 0, 0.06);    /* 5× 패턴: 0.06/0.08 */
+  --plando-surface-strong:  rgba(0, 0, 0, 0.10);    /* 3× 패턴: 0.10/0.10 */
+
+  /* ── Card-specific shadow — Phase 6+ 신규 ──
+     카드의 시각 경계용 1px ring + soft shadow.
+     mock spec이 border 대신 사용한 형태. shadow-1은 너무 연해 카드 경계가
+     모호했던 문제를 해결. CardSection primitive가 사용. */
+  --plando-shadow-card-ring: 0 1px 3px rgba(15, 23, 42, 0.05),
+                             0 0 0 1px rgba(15, 23, 42, 0.07);
+
+  /* ── AI / chat — Phase 7+ 신규 ──
+     AI 챗봇이 생성한 컨텐츠 표식용 그라데이션 + accent dims.
+     ChatWidget / ChatParsedCard / ChatResultCards 헤더 배지 + 아바타에 사용. */
+  --plando-ai-grad:      linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+  --plando-ai-grad-dim:  linear-gradient(135deg, rgba(37,99,235,0.08) 0%, rgba(124,58,237,0.08) 100%);
+  --plando-ai-glow:      rgba(37, 99, 235, 0.25);
+  --plando-purple:       #7C3AED;
+  --plando-purple-soft:  rgba(124, 58, 237, 0.10);
+}
+
+/* ── Dark theme ─────────────────────────────────────────── */
+[data-theme="dark"] {
+  --plando-primary:         #8AB4F8;
+  --plando-primary-hover:   #6EA8F5;
+  --plando-primary-pressed: #4A8FE2;
+  --plando-primary-soft:    rgba(138, 180, 248, 0.10);
+  --plando-primary-soft-2:  rgba(138, 180, 248, 0.18);
+
+  --plando-bg:          #0A0A0F;
+  --plando-surface:     #131317;
+  --plando-surface-alt: #0E0E13;
+  --plando-divider:     rgba(255,255,255,0.06);
+  --plando-border:      rgba(255,255,255,0.08);
+
+  --plando-text-primary:   #E8EAED;
+  --plando-text-secondary: #9AA0A6;
+  --plando-text-tertiary:  #6B7280;
+  --plando-text-disabled:  #4B5563;
+
+  --plando-red-soft:    rgba(225, 29, 72, 0.16);
+  --plando-orange-soft: rgba(245, 158, 11, 0.16);
+  --plando-green-soft:  rgba(16, 185, 129, 0.16);
+  --plando-gray-soft:   rgba(148, 163, 184, 0.12);
+
+  --plando-shadow-card:   0 1px 2px rgba(0,0,0,0.4), 0 2px 8px rgba(0,0,0,0.35);
+  --plando-shadow-raised: 0 6px 16px rgba(0,0,0,0.4);
+  --plando-shadow-float:  0 8px 24px rgba(138,180,248,0.15);
+  --plando-shadow-nav:    0 -1px 2px rgba(0,0,0,0.4), 0 -6px 24px rgba(0,0,0,0.35);
+
+  --plando-shadow-1: 0 1px 2px rgba(0,0,0,0.30), 0 1px 3px rgba(0,0,0,0.20);
+  --plando-shadow-2: 0 2px 6px rgba(0,0,0,0.35), 0 4px 12px rgba(0,0,0,0.25);
+  --plando-shadow-3: 0 4px 14px rgba(0,0,0,0.40), 0 10px 28px rgba(0,0,0,0.30);
+  --plando-shadow-4: 0 10px 30px rgba(0,0,0,0.50), 0 20px 50px rgba(0,0,0,0.35);
+
+  --plando-elev-1: none;
+  --plando-elev-2: 0 1px 2px rgba(0,0,0,0.15);
+  --plando-elev-3: 0 2px 4px rgba(0,0,0,0.20);
+
+  /* Form / Input (dark) */
+  --plando-input-bg:        rgba(255, 255, 255, 0.04);
+  --plando-input-bd:        rgba(255, 255, 255, 0.14);
+  --plando-input-bg-hover:  rgba(255, 255, 255, 0.06);
+  --plando-sub-surface:     rgba(255, 255, 255, 0.04);
+  --plando-sheet-handle:    rgba(255, 255, 255, 0.18);
+  --plando-overlay-bg:      rgba(0, 0, 0, 0.50);
+
+  /* Surface tone scale (dark) — light 토큰과 페어. 1:1 정확 매칭 보장. */
+  --plando-surface-card:    rgba(255, 255, 255, 0.04);
+  --plando-surface-faint:   rgba(255, 255, 255, 0.04);
+  --plando-surface-low:     rgba(255, 255, 255, 0.05);
+  --plando-surface-mid:     rgba(255, 255, 255, 0.08);
+  --plando-surface-strong:  rgba(255, 255, 255, 0.10);
+
+  /* Card ring (dark) — 더 진한 ring + 약한 외곽 shadow (다크는 테두리 필수, 그림자는 약하게) */
+  --plando-shadow-card-ring: 0 1px 3px rgba(0, 0, 0, 0.30),
+                             0 0 0 1px rgba(255, 255, 255, 0.08);
+
+  /* AI / chat (dark) */
+  --plando-ai-grad:      linear-gradient(135deg, #4A8FE2 0%, #9B8AD8 100%);
+  --plando-ai-grad-dim:  linear-gradient(135deg, rgba(74,143,226,0.10) 0%, rgba(155,138,216,0.10) 100%);
+  --plando-ai-glow:      rgba(74, 143, 226, 0.30);
+  --plando-purple:       #9B8AD8;
+  --plando-purple-soft:  rgba(155, 138, 216, 0.12);
+}

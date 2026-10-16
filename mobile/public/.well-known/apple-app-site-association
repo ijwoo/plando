@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["TEAMID.com.imjaewoo.plando"],
+        "components": [
+          { "/": "/", "comment": "해시 라우터(/#/verify-email 등)라 경로가 항상 '/' 다 — iOS 는 프래그먼트를 보지 않으므로 루트를 잡아야 앱이 링크를 받는다" }
+        ]
+      }
+    ]
+  },
+  "webcredentials": { "apps": ["TEAMID.com.imjaewoo.plando"] }
+}

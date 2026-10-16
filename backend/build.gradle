@@ -1,0 +1,102 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.5.3'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    set('springAiVersion', "1.1.2")
+}
+
+
+dependencies {
+    // 에러 추적. DSN(SENTRY_DSN)이 없으면 자동으로 비활성 — 지금은 코드만 넣어두고
+    // 프로젝트를 만든 뒤 .env 에 SENTRY_DSN 만 추가하면 바로 수집이 시작된다.
+    // sentry-logback 은 일부러 뺐다. DSN 이 없으면 부팅마다
+    //   "Failed to init Sentry during appender initialization: DSN is required"
+    // 경고를 찍는데, 매번 뜨는 경고는 결국 로그 전체를 안 보게 만든다.
+    // 미처리 예외 수집은 스타터만으로도 된다. 로그 기반 이벤트가 필요해지면 그때 다시 넣을 것.
+    implementation 'io.sentry:sentry-spring-boot-starter-jakarta:8.9.0'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+    implementation 'org.springframework.retry:spring-retry'
+    implementation 'org.springframework:spring-aspects'
+    // Spring AI (OpenAI)
+    implementation 'org.springframework.ai:spring-ai-starter-model-openai'
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+    implementation 'org.springframework.security:spring-security-crypto'
+    compileOnly 'org.projectlombok:lombok'
+    runtimeOnly 'org.postgresql:postgresql'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+    testRuntimeOnly 'com.h2database:h2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Email
+    implementation 'org.springframework.boot:spring-boot-starter-mail'
+
+    // Web Push (VAPID)
+    implementation 'nl.martijndwars:web-push:5.1.1'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
+
+    // APNs (iOS push)
+    implementation 'com.eatthepath:pushy:0.15.4'
+    runtimeOnly 'io.netty:netty-tcnative-boringssl-static:2.0.65.Final'
+
+    // Image resizing
+    implementation 'net.coobird:thumbnailator:0.4.20'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.ai:spring-ai-bom:${springAiVersion}"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+
+    /* application.properties 에 기본값 없는 ${...} 자리표시자가 여럿 있어(JWT_SECRET,
+       KAKAO_REST_KEY, OPENAI_API_KEY …) 값을 주지 않으면 컨텍스트가 아예 뜨지 않는다.
+       테스트는 이 외부 연동을 실제로 호출하지 않으므로 자리만 채운다.
+       properties 파일 대신 환경변수로 주는 이유: 자리표시자는 환경변수를 먼저 보는데,
+       profile 별 properties 로는 해석 시점에 안 잡히는 경우가 있었다.
+       **진짜 값을 여기 넣지 말 것 — 저장소에 커밋되는 파일이다.** */
+    environment 'JWT_SECRET', 'test-secret-key-for-integration-tests-only-0123456789abcdef'
+    environment 'GMAIL_APP_PASSWORD', 'test-not-used'
+    environment 'GOOGLE_CLIENT_ID', 'test-not-used'
+    environment 'GOOGLE_CLIENT_SECRET', 'test-not-used'
+    environment 'KAKAO_REST_KEY', 'test-not-used'
+    environment 'KAKAO_CLIENT_SECRET', 'test-not-used'
+    environment 'OPENAI_API_KEY', 'test-not-used'
+    environment 'VAPID_PRIVATE_KEY', 'test-not-used'
+    environment 'VAPID_PUBLIC_KEY', 'test-not-used'
+    environment 'DB_PASSWORD', 'test-not-used'
+}

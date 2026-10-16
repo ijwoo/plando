@@ -1,0 +1,29 @@
+name: 백엔드 테스트
+
+on:
+  push:
+    branches: [main]
+    paths: ['backend/**', '.github/workflows/backend-test.yml']
+  pull_request:
+    paths: ['backend/**', '.github/workflows/backend-test.yml']
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: gradle
+      # 실제 설정 파일은 저장소에 없으므로 예시 설정으로 띄운다.
+      # 외부 연동 자격증명은 build.gradle 의 test 태스크가 더미 값으로 채운다.
+      - name: 예시 설정 사용
+        run: cp src/main/resources/application.example.properties src/main/resources/application.properties
+      - name: 테스트 실행
+        run: chmod +x ./gradlew && ./gradlew test --no-daemon

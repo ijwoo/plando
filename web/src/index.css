@@ -1,0 +1,79 @@
+/* src/index.css */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  height: 100%;
+  /* iOS PWA black-translucent: window 레벨 스크롤을 원천 차단해
+     앱 시작 시 env(safe-area-inset-top) 만큼 scrollY 가 밀리는 현상 방지 */
+  overflow: hidden;
+  /* 라이트 default. 다크모드는 [data-theme="dark"]에서 override.
+     키보드 올라올 때 viewport 축소로 노출되는 native 영역 색상 → 페이지 배경과 매치 */
+  background-color: #ffffff;
+}
+[data-theme="dark"] html,
+[data-theme="dark"] body,
+[data-theme="dark"] #root,
+html[data-theme="dark"],
+html[data-theme="dark"] body,
+html[data-theme="dark"] #root {
+  background-color: #0A0A0F;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  overscroll-behavior: none;
+}
+
+/* ── PWA: 선택·callout 차단은 터치 기기 전용 (롱프레스 콜아웃 방지)
+   데스크탑 마우스 환경에서는 텍스트 드래그 복사를 허용해야 자연스러움.
+   주요 적용은 index.html <style> 인라인에서, 여기는 Chromium 계열 보강. */
+
+@media (hover: none) and (pointer: coarse) {
+  *, *::before, *::after {
+    -webkit-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+
+  input,
+  textarea,
+  [contenteditable="true"],
+  .selectable,
+  .selectable * {
+    -webkit-user-select: text;
+    user-select: text;
+    -webkit-touch-callout: default;
+  }
+}
+
+img, svg {
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+/* ── 커스텀 스크롤바 ── */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { border-radius: 999px; background: rgba(0,0,0,0.22); }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.38); }
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.18); }
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.32); }
+
+/* iOS Capacitor: 풀스크린 Dialog/Drawer가 portal로 body에 마운트되면서
+   Layout의 safe-area padding 밖에 위치 → 노치/홈인디케이터 침범.
+   PWA/웹에서는 env() 값이 0이라 무영향. */
+.MuiDialog-paperFullScreen {
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.MuiDrawer-paperAnchorTop {
+  padding-top: env(safe-area-inset-top);
+}
+.MuiDrawer-paperAnchorBottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}

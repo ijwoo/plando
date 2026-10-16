@@ -1,0 +1,7 @@
+"CFBundleDisplayName" = "Plan Do!";
+"NSLocationWhenInUseUsageDescription" = "지도에서 내 위치를 표시하고 장소 기반 알림을 보내기 위해 위치 정보가 필요합니다.";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "백그라운드에서 장소 기반 알림을 받으려면 항상 위치 접근이 필요합니다.";
+"NSCameraUsageDescription" = "프로필 사진 및 파일 첨부를 위해 카메라 접근이 필요합니다.";
+"NSPhotoLibraryUsageDescription" = "프로필 사진 및 파일 첨부를 위해 사진 라이브러리 접근이 필요합니다.";
+"NSPhotoLibraryAddUsageDescription" = "사진을 저장하기 위해 사진 라이브러리 접근이 필요합니다.";
+"NSMicrophoneUsageDescription" = "음성 메시지 녹음을 위해 마이크 접근이 필요합니다.";

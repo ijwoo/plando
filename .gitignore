@@ -1,0 +1,49 @@
+# 의존성 · 빌드 산출물
+node_modules/
+dist/
+build/
+.gradle/
+out/
+web-build/
+.expo/
+ios/Pods/
+*.tsbuildinfo
+
+# 백엔드 실제 설정 (예시: backend/src/main/resources/application.example.properties)
+backend/src/main/resources/application.properties
+backend/src/main/resources/application-*.properties
+backend/src/main/resources/application*.yml
+backend/src/main/resources/static/
+backend/uploads/
+uploads/
+
+# 환경 변수 (예시 파일만 추적)
+.env
+.env.*
+!.env.example
+
+# 서명 키 · 인증서 · 플랫폼 설정
+*.p8
+*.p12
+*.pem
+*.key
+*.jks
+*.keystore
+*.mobileprovision
+google-services.json
+GoogleService-Info.plist
+credentials/
+credentials*.json
+
+# DB 덤프
+*.dump
+*.rdb
+*.sql.gz
+
+# 에디터 · OS · 로그
+.idea/
+.vscode/
+.claude/
+*.iml
+.DS_Store
+*.log

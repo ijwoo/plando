@@ -1,0 +1,334 @@
+/* ─────────────────────────────────────────────────────────
+   TaskDetailPanel — B′ 시안 기반 디테일 패널 스타일
+   모든 색상은 plandoTokens.css의 --plando-* 토큰을 사용.
+   다크모드는 [data-theme="dark"] 토큰 재정의로 자동 대응.
+   ───────────────────────────────────────────────────────── */
+
+/* ── 컨테이너 ───────────────────────────────────────────── */
+.pd-panel {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  background: var(--plando-surface);
+  color: var(--plando-text-primary);
+  font-size: 13px;
+  line-height: 1.45;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.pd-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  min-width: 0;
+}
+.pd-scroll::-webkit-scrollbar { width: 0; }
+
+/* ── 컬러바 ─────────────────────────────────────────────── */
+.pdp-colorbar {
+  height: 3px;
+  flex: 0 0 3px;
+  background: var(--plando-red);
+  transition: background .3s var(--plando-ease, ease);
+}
+.pdp-colorbar.is-prog { background: var(--plando-orange); }
+.pdp-colorbar.is-done { background: var(--plando-green); }
+
+/* ── 인플레이스 편집 제목 ──────────────────────────────── */
+.pdp-title-edit {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--plando-text-primary);
+  letter-spacing: -0.012em;
+  line-height: 1.3;
+  outline: none;
+  padding: 4px 6px;
+  margin: 0 -6px 4px -6px;
+  border-radius: 6px;
+  cursor: text;
+  transition: background .15s, box-shadow .15s;
+  word-break: break-word;
+}
+.pdp-title-edit:hover { background: var(--plando-surface-alt); }
+.pdp-title-edit:focus { background: var(--plando-surface); box-shadow: 0 0 0 2px var(--plando-primary-soft-2); }
+.pdp-title-edit:empty::before {
+  content: attr(data-ph);
+  color: var(--plando-text-tertiary);
+}
+
+/* ── 인플레이스 편집 본문 ──────────────────────────────── */
+.pdp-desc-edit {
+  font-size: 13px;
+  color: var(--plando-text-secondary);
+  line-height: 1.6;
+  outline: none;
+  padding: 8px 10px;
+  margin: 0 -10px;
+  border-radius: 8px;
+  cursor: text;
+  min-height: 60px;
+  transition: background .15s, box-shadow .15s;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+.pdp-desc-edit:hover { background: var(--plando-surface-alt); }
+.pdp-desc-edit:focus {
+  background: var(--plando-surface);
+  box-shadow: inset 0 0 0 1px var(--plando-divider), 0 0 0 3px var(--plando-primary-soft);
+}
+.pdp-desc-edit:empty::before {
+  content: attr(data-ph);
+  color: var(--plando-text-tertiary);
+}
+
+/* ── 라벨 ──────────────────────────────────────────────── */
+.pd-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--plando-text-tertiary);
+  letter-spacing: 0.02em;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* ── 배지 (상태) ───────────────────────────────────────── */
+.pd-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.pd-badge-todo { background: var(--plando-red-soft);    color: var(--plando-red); }
+.pd-badge-prog { background: var(--plando-orange-soft); color: var(--plando-orange); }
+.pd-badge-done { background: var(--plando-green-soft);  color: var(--plando-green); }
+
+/* ── 아이콘 버튼 ───────────────────────────────────────── */
+.pd-iconbtn {
+  width: 28px; height: 28px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 0; border-radius: 7px;
+  background: transparent;
+  color: var(--plando-text-tertiary);
+  cursor: pointer;
+  font-family: inherit;
+  transition: background .15s, color .15s;
+}
+.pd-iconbtn:hover { background: var(--plando-surface-alt); color: var(--plando-text-primary); }
+.pd-iconbtn.is-active { color: var(--plando-primary); background: var(--plando-primary-soft); }
+
+.pd-textbtn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 4px 10px;
+  border: 0;
+  background: transparent;
+  color: var(--plando-text-tertiary);
+  font-size: 11.5px; font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background .15s, color .15s;
+}
+.pd-textbtn:hover { background: var(--plando-surface-alt); color: var(--plando-text-primary); }
+
+/* ── 콜아웃 (읽기 전용) ────────────────────────────────── */
+.pd-callout {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 2px 7px;
+  background: var(--plando-orange-soft);
+  border: 1px solid var(--plando-orange-soft);
+  color: var(--plando-orange);
+  font-size: 10.5px;
+  font-weight: 600;
+  border-radius: 6px;
+}
+
+/* ── 탭 ────────────────────────────────────────────────── */
+.pd-tabs {
+  display: flex; gap: 2px;
+  border-bottom: 1px solid var(--plando-divider);
+  padding: 0 16px;
+  background: var(--plando-surface);
+}
+.pd-tab {
+  border: 0; background: transparent;
+  padding: 13px 14px;
+  font-family: inherit;
+  font-size: 14.5px; font-weight: 500;
+  color: var(--plando-text-tertiary);
+  cursor: pointer;
+  position: relative;
+  display: inline-flex; align-items: center; gap: 6px;
+  transition: color .15s;
+}
+.pd-tab:hover { color: var(--plando-text-secondary); }
+.pd-tab.is-active { color: var(--plando-text-primary); font-weight: 600; }
+.pd-tab.is-active::after {
+  content: ''; position: absolute;
+  left: 8px; right: 8px; bottom: -1px;
+  height: 2px; background: var(--plando-primary);
+  border-radius: 2px;
+}
+.pd-tab-count {
+  background: var(--plando-surface-low);
+  color: var(--plando-text-secondary);
+  font-size: 11.5px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* ── 카드 ──────────────────────────────────────────────── */
+.pdp-card {
+  border-radius: 11px;
+  background: var(--plando-surface);
+  overflow: hidden;
+  box-shadow: var(--plando-elev-1);
+  transition: box-shadow .2s;
+}
+.pdp-card:hover { box-shadow: var(--plando-elev-2); }
+
+.pdp-card-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px;
+  background-image: linear-gradient(to right, transparent, var(--plando-divider) 15%, var(--plando-divider) 85%, transparent);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: bottom;
+}
+.pdp-card-head-title {
+  font-size: 12px; font-weight: 600; color: var(--plando-text-secondary);
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.pdp-card-body { padding: 4px 14px; }
+
+/* ── 속성 행 ───────────────────────────────────────────── */
+.pdp-row {
+  display: flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 6px 12px;
+  margin: 0 -12px;
+  border-radius: 7px;
+  cursor: pointer;
+  transition: background .12s;
+  position: relative;
+}
+.pdp-row:hover { background: var(--plando-surface-alt); }
+.pdp-row + .pdp-row::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 12px; right: 12px;
+  height: 1px;
+  background: var(--plando-divider);
+  opacity: 1;
+  transition: opacity .12s;
+}
+.pdp-row:hover::before, .pdp-row:hover + .pdp-row::before { opacity: 0; }
+
+.pdp-row-label {
+  flex: 0 0 92px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  color: var(--plando-text-tertiary);
+  font-weight: 500;
+}
+.pdp-row-value {
+  flex: 1; min-width: 0;
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px;
+  color: var(--plando-text-primary);
+}
+.pdp-row-value-muted { color: var(--plando-text-tertiary); }
+
+/* ── 인라인 칩 (속성값) ───────────────────────────────── */
+.pdp-vchip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 9px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  background: transparent;
+  font-size: 12.5px;
+  color: var(--plando-text-primary);
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color .15s, background .15s;
+}
+.pdp-row:hover .pdp-vchip { border-color: var(--plando-divider); background: var(--plando-surface); }
+.pdp-vchip-empty {
+  color: var(--plando-text-tertiary);
+  border-style: dashed;
+  border-color: var(--plando-divider);
+}
+.pdp-row:hover .pdp-vchip-empty { border-color: var(--plando-border); }
+
+/* 우선순위 아이콘 슬롯 */
+.pdp-prio-icon {
+  width: 14px; height: 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+
+/* ── 작은 상태 닷 (메타용) ────────────────────────────── */
+.pd-seg-dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; }
+.pd-dot-todo { background: var(--plando-red); }
+.pd-dot-prog { background: var(--plando-orange); }
+.pd-dot-done { background: var(--plando-green); }
+
+/* 아바타는 공통 UserAvatar (shared/ui/common/UserAvatar.jsx) 사용 — 별도 .pd-avatar 룰 불필요. */
+
+/* ── 활동 ──────────────────────────────────────────────── */
+.pdp-activity {
+  display: flex; gap: 10px;
+  padding: 8px 0;
+  font-size: 12.5px;
+  color: var(--plando-text-secondary);
+  line-height: 1.55;
+}
+.pdp-activity-time {
+  color: var(--plando-text-tertiary);
+  font-size: 11px;
+  margin-top: 2px;
+}
+
+/* ── 미니 푸터 ────────────────────────────────────────── */
+.pdp-minifooter {
+  padding: 9px 18px;
+  border-top: 1px solid var(--plando-divider);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--plando-text-tertiary);
+  background: var(--plando-surface);
+}
+.pdp-minifooter-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--plando-green);
+  flex: 0 0 6px;
+}
+.pdp-minifooter-dot.is-saving { background: var(--plando-orange); }
+.pdp-minifooter-dot.is-error  { background: var(--plando-red); }
+.pdp-minifooter-dot.is-readonly { background: var(--plando-text-tertiary); }
+
+
+/* ── 전체화면 배치 ──────────────────────────────────────────
+   폭을 그냥 늘리면 "라벨 … 값" 한 줄이 1000px 을 차지해 오른쪽이 비고,
+   반대로 자식만 좁게 자르면 열과 어긋나 가운데가 텅 빈다(둘 다 실제로 그랬다).
+   그래서 속성만 2열로 흘려 폭을 실제로 쓰게 한다.
+
+   grid 가 아니라 multi-column 인 이유: 각 행 뒤에 펼침 패널(MuiCollapse)이
+   따라오는데, grid 는 그 둘을 서로 다른 칸에 떼어 놓는다. multi-column 은
+   문서 흐름을 유지하므로 행과 펼침 패널이 붙어 있다. */
+.pd-fullscreen-main .pdp-card-body {
+  column-count: 2;
+  column-gap: 32px;
+}
+/* 행이 열 경계에서 반으로 잘리지 않게 */
+.pd-fullscreen-main .pdp-card-body > * {
+  break-inside: avoid;
+}

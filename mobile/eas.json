@@ -1,0 +1,37 @@
+{
+  "cli": {
+    "version": ">= 12.0.0",
+    "appVersionSource": "remote"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "credentialsSource": "local",
+      "ios": {
+        "simulator": false
+      }
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "autoIncrement": true,
+      "credentialsSource": "local",
+      "env": {
+        "PLANDO_CUTOVER": "1"
+      }
+    }
+  },
+  "submit": {
+    "production": {
+      "ios": {
+        "ascAppId": "${ASC_APP_ID}",
+        "appleTeamId": "${APPLE_TEAM_ID}",
+        "ascApiKeyPath": "${ASC_API_KEY_PATH}",
+        "ascApiKeyId": "${ASC_API_KEY_ID}",
+        "ascApiKeyIssuerId": "${ASC_API_KEY_ISSUER_ID}"
+      }
+    }
+  }
+}

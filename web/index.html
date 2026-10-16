@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- 브라우저 탭 아이콘 -->
+  <link rel="icon" href="/icon.ico" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <!-- iOS 홈화면 대응 -->
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Plan Do!" />
+
+  <!-- Pretendard Variable — system-ui 대체 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <title>Plan Do! — 할 일 · 캘린더 · 팀 협업</title>
+
+  <!-- 링크 공유 카드 (카톡·슬랙·디스코드 등).
+       예전엔 이 태그가 하나도 없어서 주소를 공유하면 맨 링크만 떴다.
+       og:image 는 1200x630 이어야 잘리지 않는다 — 기존 kakaoimg.jpg 는 세로형이라 부적합. -->
+  <meta name="description" content="할 일과 캘린더, 팀 협업을 한곳에서. 장소에 도착하면 알려주는 위치 기반 알림까지. 무료로 사용하세요." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Plan Do!" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:title" content="Plan Do! — 할 일 · 캘린더 · 팀 협업" />
+  <meta property="og:description" content="할 일과 캘린더, 팀 협업을 한곳에서. 위치 기반 알림까지, 무료로." />
+  <meta property="og:url" content="https://plando.imjaewoo.dev/" />
+  <meta property="og:image" content="https://plando.imjaewoo.dev/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Plan Do! — 할 일 · 캘린더 · 팀 협업" />
+  <meta name="twitter:description" content="할 일과 캘린더, 팀 협업을 한곳에서. 위치 기반 알림까지, 무료로." />
+  <meta name="twitter:image" content="https://plando.imjaewoo.dev/og-image.png" />
+
+  <style>
+    /* ── 롱프레스 선택·callout 차단 (Safari PWA 대응, 터치 기기 전용) ─
+       데스크탑(마우스)에서는 텍스트 드래그 복사 허용해야 자연스러워서
+       @media (hover: none) and (pointer: coarse) 안으로만 제한.
+       Vite CSS보다 먼저 적용되도록 index.html에 인라인으로 선언. */
+    @media (hover: none) and (pointer: coarse) {
+      *, *::before, *::after {
+        -webkit-user-select: none !important;
+        user-select: none !important;
+        -webkit-touch-callout: none !important;
+      }
+      input, textarea, [contenteditable="true"],
+      .selectable, .selectable * {
+        -webkit-user-select: text !important;
+        user-select: text !important;
+        -webkit-touch-callout: default !important;
+      }
+    }
+    img, svg {
+      -webkit-user-drag: none;
+    }
+    img { pointer-events: auto; } /* 이미지 클릭은 허용 */
+
+    /* ── 가로 방향 차단 (터치 기기 전용) ──────────────────────────────── */
+    @media screen and (orientation: landscape) and (pointer: coarse) {
+      #root { display: none !important; }
+      body {
+        background: #0d0d1a !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 100dvh !important;
+      }
+      body::after {
+        content: "세로로 회전해 주세요";
+        color: rgba(255,255,255,0.85);
+        font-size: 18px;
+        font-weight: 700;
+        font-family: -apple-system, 'Noto Sans KR', sans-serif;
+        letter-spacing: -0.3px;
+      }
+    }
+  </style>
+</head>
+<body>
+<div id="root"></div>
+<script type="module" src="/src/main.jsx"></script>
+</body>
+</html>

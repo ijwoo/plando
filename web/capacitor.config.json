@@ -1,0 +1,34 @@
+{
+  "appId": "com.imjaewoo.plando",
+  "appName": "Plan Do!",
+  "webDir": "dist",
+  "backgroundColor": "#ffffff",
+  "server": {
+    "url": "https://plando.imjaewoo.dev"
+  },
+  "ios": {
+    "contentInset": "never"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1500,
+      "launchAutoHide": true,
+      "backgroundColor": "#1D4ED8",
+      "showSpinner": false,
+      "splashFullScreen": true,
+      "splashImmersive": false,
+      "fadeInDuration": 300,
+      "fadeOutDuration": 300
+    },
+    "StatusBar": {
+      "style": "Default",
+      "backgroundColor": "#00000000",
+      "overlaysWebView": true
+    },
+    "Keyboard": {
+      "resize": "none",
+      "resizeOnFullScreen": true,
+      "style": "dark"
+    }
+  }
+}

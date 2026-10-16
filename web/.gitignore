@@ -1,0 +1,68 @@
+# =====================
+# 의존성
+# =====================
+node_modules
+dist
+dist-ssr
+
+# =====================
+# 로그
+# =====================
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# =====================
+# 환경 변수 (민감 정보)
+# =====================
+.env.local
+.env.*.local
+# .env.production, .env.development 는 CI/CD에서 사용하므로 추적 유지
+
+# =====================
+# 서명 키 / 인증서
+# =====================
+*.jks
+*.keystore
+*.p12
+*.pem
+keystore-base64.txt
+
+# =====================
+# Firebase / Google 서비스
+# =====================
+google-services.json
+GoogleService-Info.plist
+
+# =====================
+# 에디터
+# =====================
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# =====================
+# OS
+# =====================
+.DS_Store
+Thumbs.db
+*.local
+
+# =====================
+# 임시 파일
+# =====================
+*.tmp
+*.bak
+README.md~
+src/**/*.jsx~
+src/**/*.js~
+.env.development

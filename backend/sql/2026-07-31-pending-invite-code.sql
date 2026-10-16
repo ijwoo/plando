@@ -1,0 +1,12 @@
+-- 가입 시 초대코드로 남의 워크스페이스에 **이메일 인증 없이** 들어갈 수 있던 구멍을 막기 위한 컬럼.
+--
+-- 문제: WorkspaceService.joinWorkspace 에는 EmailVerificationGuard 가 있는데,
+-- 가입 경로(UserService.registerUser → private joinWorkspace)에는 없었다. 가입 시점의
+-- 사용자는 항상 미인증이므로, 초대코드만 알면 소유하지도 않은 이메일로 남의 팀에 즉시
+-- MEMBER 로 들어갈 수 있었다.
+--
+-- 해결: 가입 때는 참여시키지 않고 코드를 여기 보관했다가, 이메일 인증이 끝나면 그때 참여시킨다.
+-- (인증을 요구하면서 기능은 죽이지 않으려면 '보류 후 처리'가 필요하다)
+--
+-- 멱등: 여러 번 실행해도 안전.
+ALTER TABLE todo.users ADD COLUMN IF NOT EXISTS pending_invite_code VARCHAR(64);
